@@ -1,0 +1,24 @@
+{
+  "name": "gafinalproject",
+  "version": "1.0.0",
+  "description": "General assembly final project Carolyn",
+  "main": "main.js",
+  "scripts": {
+    "start": "",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2bethere/gafinalproject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2bethere/gafinalproject/issues"
+  },
+  "homepage": "https://github.com/2bethere/gafinalproject#readme",
+  "dependencies": {
+    "jslint": "^0.12.0",
+    "live-server": "^1.2.0"
+  }
+}
