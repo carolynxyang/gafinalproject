@@ -21,6 +21,7 @@ class newsItem {
     }
 }
 // Main code
+// Closure and IIFE
 (function () {
     //Geo to country
     //Given a list of geo and country list, merge list into country count
@@ -70,6 +71,7 @@ class newsItem {
       url: url,
       method: 'GET',
     }).done(function(data) { 
+        console.dir(data);
         for (var i = 0; i < data.results.length; i++){
             var x = data.results[i];
             if(x.multimedia.length>0)
