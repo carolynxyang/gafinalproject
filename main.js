@@ -24,7 +24,8 @@ class newsItem {
 // Closure and IIFE
 (function () {
     //Geo to country
-    //Given a list of geo and country list, merge list into country count
+    //Given a list of geo and country list, merge list into country count (ex: Sydney(Australia))
+
     var countrylist = {};
     var newsList = [];
     function geo2country(geo){
@@ -41,12 +42,8 @@ class newsItem {
         }
         return output;
     }
-    
-    function geoIndex(geo, countrylist){
-        geo.forEach(function (data){
-            console.log(data);
-        });
-    }
+
+    //Convert news items object to html
 
     function returnHtml(item){
         var output = `<div class="newsitem"><div class="itemleft"><div class="itemimg"><img src="`+item.thumbnail+`"></div></div>`
@@ -60,7 +57,7 @@ class newsItem {
 
 
     //Loading from NYT APi
-    // Built by LucyBot. www.lucybot.com
+
     var url = "https://api.nytimes.com/svc/news/v3/content/all/world.json";
     url += '?' + $.param({
       'api-key': "409ce17a2ba0409da856ee9f6f817d57",
@@ -82,7 +79,9 @@ class newsItem {
             }
             newsList.push(item);
         }
+
         // Create a geo based index of news articles
+
         for (var i = 0; i < newsList.length; i++){
             var item = newsList[i];
             for(var y = 0; y < item.geo.length; y++){
@@ -94,7 +93,8 @@ class newsItem {
             }
         }
         
-        //List to string
+        //List to string, Google only accepts country as a string
+
         var countries="";
         for (var key in countrylist) {
             countries = countries + "'"+ key +"', ";
@@ -102,6 +102,9 @@ class newsItem {
         countries= countries.substring(0,countries.length - 2);
 
         console.log(countries);
+
+
+        //Highlight contries
 
         var world_geometry = new google.maps.FusionTablesLayer({
             query: {
@@ -119,7 +122,7 @@ class newsItem {
                 {
                     where: "'Name' in ("+countries+")",
                     polygonOptions: {
-                        fillColor: '#00AAFF',
+                        fillColor: '#2196F3',
                         fillOpacity: 0.5
                     }
                 },
@@ -129,8 +132,8 @@ class newsItem {
             suppressInfoWindows: true
         });
 
-        //
-
+        
+        //News panel
 
         google.maps.event.addListener(world_geometry, 'click', function (e) {
             console.log(e.row.Name.value);
